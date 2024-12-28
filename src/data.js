@@ -1,3 +1,6 @@
+function generateRandomData() {
+
+}
 const players = ['John Doe', 'Jane Smith', 'Alice Brown', 'Bob Johnson'];
 let data = [];
 
@@ -64,6 +67,5 @@ mondays.forEach(date => {
     });
 });
 
-console.log(data);
 
 export default data;
