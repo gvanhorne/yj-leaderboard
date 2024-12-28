@@ -52,7 +52,7 @@ export default function BumpChart(data, { width, height } = {}) {
             domain: d3
             .groupSort(
                 data,
-                (v) => v[0].qualifying_points,
+                (v) => [v[0].qualifying_points, v[0].tiebreaker_points],
                 (d) => d.player
             )
             .reverse()
@@ -61,7 +61,7 @@ export default function BumpChart(data, { width, height } = {}) {
             bumpMarks(data, {
                 x: "date",
                 z: "player",
-                order: "qualifying_points",
+                order: (d, v) => (d.qualifying_points === v.qualifying_points) ? (d.tiebreaker_points - v.tiebreaker_points) : (d.qualifying_points - v.qualifying_points),
                 reverse: true
             })
         ]
