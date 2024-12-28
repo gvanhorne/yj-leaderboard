@@ -12,36 +12,58 @@ const mondays = [
     '2025-10-27', '2025-11-03', '2025-11-10', '2025-11-17', '2025-11-24', '2025-12-01',
     '2025-12-08', '2025-12-15', '2025-12-22', '2025-12-29'
 ];
+// Convert the Monday dates to Date objects
+let points = {
+  'John Doe': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Jane Smith': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Alice Brown': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Bob Johnson': { qualifying_points: 0, tiebreaker_points: 0 }
+};
 
-let currentData = players.map(player => ({
-    player: player,
-    qualifying_points: 0,
-    tiebreaker_points: 0
-}));
+mondays.forEach(date => {
+    // Shuffle the players array to ensure randomness in who gets the points
+    const shuffledPlayers = [...players];
+    for (let i = shuffledPlayers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledPlayers[i], shuffledPlayers[j]] = [shuffledPlayers[j], shuffledPlayers[i]];
+    }
 
-mondays.forEach((date, i) => {
-    let currentMondayData = [];
+    // Assign qualifying and tiebreaker points to different players
+    const qualifyingPlayer = shuffledPlayers[0]; // First player gets qualifying points
+    const tiebreakerPlayer = shuffledPlayers[1]; // Second player gets tiebreaker points
 
-    let qualifyingPlayerIndex = Math.floor(Math.random() * players.length);
-    let tiebreakerPlayerIndex;
-    do {
-        tiebreakerPlayerIndex = Math.floor(Math.random() * players.length);
-    } while (tiebreakerPlayerIndex === qualifyingPlayerIndex);
+    // Increment points for players who got points
+    points[qualifyingPlayer].qualifying_points += 1;
+    points[tiebreakerPlayer].tiebreaker_points += 1;
 
-    currentData[qualifyingPlayerIndex].qualifying_points += 1;
-    currentData[tiebreakerPlayerIndex].tiebreaker_points += 1;
-
-    currentData.forEach(playerData => {
-        currentMondayData.push({
-            player: playerData.player,
-            qualifying_points: playerData.qualifying_points,
-            tiebreaker_points: playerData.tiebreaker_points
-        });
+    // Push the results for the players who got points
+    data.push({
+        date: new Date(date),
+        player: qualifyingPlayer,
+        qualifying_points: points[qualifyingPlayer].qualifying_points,
+        tiebreaker_points: points[qualifyingPlayer].tiebreaker_points
     });
 
     data.push({
-        [date]: currentMondayData
+        date: new Date(date),
+        player: tiebreakerPlayer,
+        qualifying_points: points[tiebreakerPlayer].qualifying_points,
+        tiebreaker_points: points[tiebreakerPlayer].tiebreaker_points
+    });
+
+    // Push an entry for each other player who didn't receive points
+    shuffledPlayers.forEach(player => {
+        if (player !== qualifyingPlayer && player !== tiebreakerPlayer) {
+            data.push({
+                date: new Date(date),
+                player: player,
+                qualifying_points: points[player].qualifying_points,
+                tiebreaker_points: points[player].tiebreaker_points
+            });
+        }
     });
 });
+
+console.log(data);
 
 export default data;
