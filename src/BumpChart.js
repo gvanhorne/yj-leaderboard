@@ -32,6 +32,7 @@ function bumpMarks(data, { r = 3, curve = "bump-x", tip, ...options }) {
 
 export default function BumpChart(data, { width, height } = {}) {
     const mondays = new Set(data.map((d) => { return d.date; }))
+    const players = new Set(data.map((d) => { return d.player; }))
     return Plot.plot({
         width,
         height,
@@ -44,6 +45,7 @@ export default function BumpChart(data, { width, height } = {}) {
             label: null
         },
         y: {
+            domain: [players.size, 1],
             axis: null,
         },
         color: {
