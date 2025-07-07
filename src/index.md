@@ -27,7 +27,16 @@ monthGroups.forEach(group => {
   monthlyData.push(earliest);
 });
 
-view(BumpChart(monthlyData, {width, height: 300}));
+```
+
+```jsx
+display(
+  <BumpChart
+    data={monthlyData}
+    width={width}
+    height={300}
+  />
+)
 ```
 
 ```js
