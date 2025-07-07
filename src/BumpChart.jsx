@@ -77,6 +77,8 @@ export default function BumpChart({data, width, height, ...options}) {
         }, [data, options]);
 
         return (
-          <div ref={containerRef} className="card grid-colspan-2" />
+          <div ref={containerRef} className="card grid-colspan-2">
+            <h2><b>Player Ranking Evolution</b></h2>
+          </div>
         );
       }

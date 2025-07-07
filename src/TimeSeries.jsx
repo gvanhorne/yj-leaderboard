@@ -70,6 +70,8 @@ export default function TimeSeries({
   }, [data, options]);
 
   return (
-    <div ref={containerRef} className="card grid-colspan-2" />
+    <div ref={containerRef} className="card grid-colspan-2">
+      <h2><b>Player Standings Evolution</b></h2>
+    </div>
   );
 }
