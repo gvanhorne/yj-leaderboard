@@ -1,5 +1,6 @@
 import * as Plot from 'npm:@observablehq/plot';
 import * as d3 from 'npm:d3';
+import { getPlayerColorScheme } from './colors.js';
 
 function bumpMarks(data, { r = 3, curve = "bump-x", tip, ...options }) {
   options = Plot.stackY2(options);
@@ -33,6 +34,8 @@ function bumpMarks(data, { r = 3, curve = "bump-x", tip, ...options }) {
 export default function BumpChart(data, { width, height } = {}) {
     const mondays = new Set(data.map((d) => { return d.date; }))
     const players = new Set(data.map((d) => { return d.player; }))
+    const colorScheme = getPlayerColorScheme(data);
+    
     return Plot.plot({
         width,
         height,
@@ -49,13 +52,8 @@ export default function BumpChart(data, { width, height } = {}) {
             axis: null,
         },
         color: {
-            domain: d3
-            .groupSort(
-                data,
-                (v) => [v[0].qualifying_points, v[0].tiebreaker_points],
-                (d) => d.player
-            )
-            .reverse()
+            domain: colorScheme.domain,
+            range: colorScheme.range
         },
         marks: [
             bumpMarks(data, {

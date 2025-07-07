@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'npm:react';
 import * as Plot from 'npm:@observablehq/plot';
+import { getPlayerColorScheme } from './colors.js';
 /**
  * Renders a time series plot for caseload breakdown.
  *
@@ -28,9 +29,12 @@ import * as Plot from 'npm:@observablehq/plot';
 export default function TimeSeries({
   data, dimension = 'qualifying_points', annotations = [], ...options
 }) {
+  const colorScheme = getPlayerColorScheme(data);
   const color = {
     type: 'categorical',
     legend: true,
+    domain: colorScheme.domain,
+    range: colorScheme.range
   };
   const containerRef = useRef();
 
@@ -45,16 +49,6 @@ export default function TimeSeries({
         label: dimension,
       },
       marks: [
-        options.area && Plot.areaY(
-          data,
-          {
-            x: 'date',
-            y2: dimension,
-            z: options.z,
-            fillOpacity: 0.15,
-            fill: options.z,
-          },
-        ),
         Plot.lineY(
           data,
           {
