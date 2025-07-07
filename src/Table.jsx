@@ -12,6 +12,7 @@ export default function leaderboardTable({data}) {
         }));
 
         const leaderboardTable = table(dataWithRank, {
+          select: false,
           columns: [
             "rank",
             "player",
