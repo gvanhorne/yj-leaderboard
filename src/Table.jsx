@@ -5,18 +5,22 @@ export default function leaderboardTable({data}) {
     const containerRef = useRef();
 
     useEffect(() => {
-        const leaderboardTable = table(data, {
+        // Add rank to each player based on their position in the sorted array
+        const dataWithRank = data.map((player, index) => ({
+            ...player,
+            rank: index + 1
+        }));
+
+        const leaderboardTable = table(dataWithRank, {
           columns: [
+            "rank",
             "player",
-            "date",
             "qualifying_points",
-            "tiebreaker_points",
           ],
           header: {
+            rank: "Rank",
             player: "Player Name",
-            date: "Date",
-            qualifying_points: "Qualifying Points",
-            tiebreaker_points: "Tiebreaker Points",
+            qualifying_points: "Points",
           }
         });
         containerRef.current.append(leaderboardTable);
