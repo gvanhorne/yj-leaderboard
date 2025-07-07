@@ -6,5 +6,5 @@ import Dashboard from './Dashboard.js';
 ```
 
 ```jsx
-display(<Dashboard data={data} />)
+display(<Dashboard data={data} width={width} />)
 ```

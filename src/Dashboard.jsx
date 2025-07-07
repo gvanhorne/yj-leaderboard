@@ -3,7 +3,7 @@ import BumpChart from './BumpChart.js';
 import TimeSeries from './TimeSeries.js';
 import leaderboardTable from './Table.js';
 
-export default function Dashboard({ data }) {
+export default function Dashboard({ data, width = 800 }) {
   // Filter data to show only one entry per month (earliest entry)
   const monthlyData = [];
   const monthGroups = new Map();
@@ -32,8 +32,8 @@ export default function Dashboard({ data }) {
   return (
     <div>
       <div className="grid grid-cols-2 gap-4">
-        <TimeSeries data={monthlyData} z="player" />
-        <BumpChart data={monthlyData} />
+        <TimeSeries data={monthlyData} width={width / 2} z="player" />
+        <BumpChart data={monthlyData} width={width / 2} />
       </div>
       
       {/* <div className="card">
