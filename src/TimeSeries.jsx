@@ -70,6 +70,6 @@ export default function TimeSeries({
   }, [data, options]);
 
   return (
-    <div ref={containerRef} className="card" />
+    <div ref={containerRef} className="card grid-colspan-2" />
   );
 }

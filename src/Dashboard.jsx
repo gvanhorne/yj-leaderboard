@@ -40,10 +40,10 @@ export default function Dashboard({ data, width = 800 }) {
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-4">
+        <LeaderboardTable data={latestData} />
         <TimeSeries data={monthlyData} z="player" />
         <BumpChart data={monthlyData} />
-        <LeaderboardTable data={latestData} />
       </div>
     </div>
   );

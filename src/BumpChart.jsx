@@ -77,6 +77,6 @@ export default function BumpChart({data, width, height, ...options}) {
         }, [data, options]);
 
         return (
-          <div ref={containerRef} className="card" />
+          <div ref={containerRef} className="card grid-colspan-2" />
         );
       }

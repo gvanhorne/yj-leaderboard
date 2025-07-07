@@ -27,6 +27,6 @@ export default function leaderboardTable({data}) {
     }, [data]);
 
     return (
-        <div ref={containerRef} className="card grid-colspan-1" style={{ padding: "0px" }} />
+        <div ref={containerRef} className="card grid-rowspan-2" style={{ padding: "0px" }} />
     );
 }
