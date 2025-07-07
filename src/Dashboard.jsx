@@ -27,7 +27,16 @@ export default function Dashboard({ data, width = 800 }) {
 
   // Filter data to show only the latest date for the table
   const latestDate = new Date(Math.max(...data.map(d => d.date)));
-  const latestData = data.filter(d => d.date.getTime() === latestDate.getTime());
+  const latestData = data
+    .filter(d => d.date.getTime() === latestDate.getTime())
+    .sort((a, b) => {
+      // First sort by qualifying_points (descending)
+      if (a.qualifying_points !== b.qualifying_points) {
+        return b.qualifying_points - a.qualifying_points;
+      }
+      // Then sort by tiebreaker_points (descending)
+      return b.tiebreaker_points - a.tiebreaker_points;
+    });
 
   return (
     <div>
