@@ -21,6 +21,9 @@ export default function leaderboardTable({data}) {
             rank: "Rank",
             player: "Player Name",
             qualifying_points: "Points",
+          },
+          align: {
+            rank: "left",
           }
         });
         containerRef.current.append(leaderboardTable);
