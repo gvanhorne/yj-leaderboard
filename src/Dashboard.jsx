@@ -1,7 +1,7 @@
 import React from 'npm:react';
 import BumpChart from './BumpChart.js';
 import TimeSeries from './TimeSeries.js';
-import leaderboardTable from './Table.js';
+import LeaderboardTable from './Table.js';
 
 export default function Dashboard({ data, width = 800 }) {
   // Filter data to show only one entry per month (earliest entry)
@@ -32,13 +32,10 @@ export default function Dashboard({ data, width = 800 }) {
   return (
     <div>
       <div className="grid grid-cols-2 gap-4">
-        <TimeSeries data={monthlyData} width={width / 2} z="player" />
-        <BumpChart data={monthlyData} width={width / 2} />
+        <TimeSeries data={monthlyData} z="player" />
+        <BumpChart data={monthlyData} />
+        <LeaderboardTable data={latestData} />
       </div>
-      
-      {/* <div className="card">
-        {leaderboardTable(latestData)}
-      </div> */}
     </div>
   );
 }
