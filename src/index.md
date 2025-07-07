@@ -3,6 +3,7 @@
 ```js
 import data from './data.js';
 import BumpChart from './BumpChart.js';
+import TimeSeries from './TimeSeries.js';
 import leaderboardTable from './Table.js';
 ```
 
@@ -35,4 +36,13 @@ const latestDate = new Date(Math.max(...data.map(d => d.date)));
 const latestData = data.filter(d => d.date.getTime() === latestDate.getTime());
 
 view(leaderboardTable(latestData));
+```
+
+```jsx
+display(
+  <TimeSeries
+    data={monthlyData}
+    z={'player'}
+  />
+)
 ```
