@@ -9,7 +9,7 @@
     "observable": "observable"
   },
   "dependencies": {
-    "@observablehq/framework": "^1.13.0"
+    "@observablehq/framework": "^1.13.3"
   },
   "devDependencies": {
     "rimraf": "^5.0.5"
