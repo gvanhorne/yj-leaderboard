@@ -24,6 +24,12 @@ export default function leaderboardTable({data}) {
           },
           align: {
             rank: "left",
+            player: "left",
+            qualifying_points: "left",
+          },
+          width: {
+            rank: 50,
+            qualifying_points: 50
           }
         });
         containerRef.current.append(leaderboardTable);
