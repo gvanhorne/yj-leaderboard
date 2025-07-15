@@ -1,7 +1,11 @@
 function generateRandomData() {
 
 }
-const players = ['John Doe', 'Jane Smith', 'Alice Brown', 'Bob Johnson'];
+const players = [
+  'John Doe', 'Jane Smith', 'Alice Brown', 'Bob Johnson',
+  'Charlie Wilson', 'Diana Prince', 'Edward Miller', 'Fiona Davis',
+  'George Taylor', 'Helen Clark', 'Ian Thompson', 'Julia Roberts'
+];
 let data = [];
 
 const mondays = [
@@ -20,7 +24,15 @@ let points = {
   'John Doe': { qualifying_points: 0, tiebreaker_points: 0 },
   'Jane Smith': { qualifying_points: 0, tiebreaker_points: 0 },
   'Alice Brown': { qualifying_points: 0, tiebreaker_points: 0 },
-  'Bob Johnson': { qualifying_points: 0, tiebreaker_points: 0 }
+  'Bob Johnson': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Charlie Wilson': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Diana Prince': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Edward Miller': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Fiona Davis': { qualifying_points: 0, tiebreaker_points: 0 },
+  'George Taylor': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Helen Clark': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Ian Thompson': { qualifying_points: 0, tiebreaker_points: 0 },
+  'Julia Roberts': { qualifying_points: 0, tiebreaker_points: 0 }
 };
 
 mondays.forEach(date => {
