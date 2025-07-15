@@ -13,6 +13,7 @@ export default function leaderboardTable({data}) {
 
         const leaderboardTable = table(dataWithRank, {
           select: false,
+          maxHeight: Infinity,
           columns: [
             "rank",
             "player",
