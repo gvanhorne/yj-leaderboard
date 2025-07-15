@@ -1,6 +1,6 @@
 import React from 'npm:react';
 import BumpChart from './BumpChart.js';
-import TimeSeries from './TimeSeries.js';
+import BarChart from './BarChart.js';
 import LeaderboardTable from './Table.js';
 
 export default function Dashboard({ data, width = 800 }) {
@@ -38,12 +38,17 @@ export default function Dashboard({ data, width = 800 }) {
       return b.tiebreaker_points - a.tiebreaker_points;
     });
 
+  // Get top 8 players for time series
+  const top8Players = new Set(latestData.slice(0, 8).map(d => d.player));
+  const top8PlayersData = data.filter(d => top8Players.has(d.player));
+  const top8MonthlyData = monthlyData.filter(d => top8Players.has(d.player));
+
   return (
     <div>
       <div className="grid grid-cols-4">
         <LeaderboardTable data={latestData} />
-        <TimeSeries data={monthlyData} z="player" />
-        <BumpChart data={monthlyData} />
+        <BarChart data={top8PlayersData} z="player" />
+        <BumpChart data={top8MonthlyData} width={width / 2}/>
       </div>
     </div>
   );

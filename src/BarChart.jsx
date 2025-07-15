@@ -26,7 +26,7 @@ import { getPlayerColorScheme } from './colors.js';
  *
  * <ProgramTimeSeries data={data} windowSize={6} />
  */
-export default function TimeSeries({
+export default function BarChart({
   data, dimension = 'qualifying_points', annotations = [], ...options
 }) {
   const colorScheme = getPlayerColorScheme(data);
@@ -43,21 +43,24 @@ export default function TimeSeries({
     const plot = Plot.plot({
       color,
       ...options,
-      x: 'date',
+      x: {
+        interval: "month",
+      },
       y: {
         grid: true,
         label: dimension,
       },
       marks: [
-        Plot.lineY(
+        Plot.barY(
           data,
-          {
-            x: 'date',
-            y: dimension,
-            z: options.z,
-            strokeWidth: 1.5,
-            stroke: options.z,
-          },
+          Plot.groupX(
+            { y: "sum" },
+            {
+              x: 'date',
+              y: dimension,
+              fill: "player",
+            }
+          )
         ),
         Plot.ruleY([0]),
       ],
