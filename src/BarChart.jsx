@@ -54,7 +54,7 @@ export default function BarChart({
         Plot.barY(
           data,
           Plot.groupX(
-            { y: "sum" },
+            { y: "max" },
             {
               x: 'date',
               y: dimension,
