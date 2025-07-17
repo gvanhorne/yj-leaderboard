@@ -19,10 +19,10 @@ export default function Dashboard({ data, width = 800 }) {
 
   // For each group, take the entry with the earliest date
   monthGroups.forEach(group => {
-    const earliest = group.reduce((min, current) => 
-      current.date < min.date ? current : min
+    const latest = group.reduce((max, current) => 
+      current.date > max.date ? current : max
     );
-    monthlyData.push(earliest);
+    monthlyData.push(latest);
   });
 
   // Filter data to show only the latest date for the table
