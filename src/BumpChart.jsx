@@ -46,15 +46,15 @@ export default function BumpChart({data, width, height, ...options}) {
             height,
             marginTop: 20,
             marginBottom: 35,
-            marginLeft: 75,
+            marginLeft: 35,
             marginRight: 80,
             x: {
                 domain: mondays,
                 label: null
             },
             y: {
-                domain: [players.size, 1],
-                axis: null,
+              axis: null,
+              domain: [8.2, 1]
             },
             color: {
                 domain: colorScheme.domain,
