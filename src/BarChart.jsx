@@ -59,6 +59,7 @@ export default function BarChart({
               x: 'date',
               y: dimension,
               fill: "player",
+              tip: true,
             }
           )
         ),
